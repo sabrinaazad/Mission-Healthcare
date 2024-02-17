@@ -1,0 +1,477 @@
+/************************************************************************/
+/*********************** GLOBAL DEFAULTS & RESETS ***********************/
+/************************************************************************/
+
+:root {
+    --body-font: Helvetica, Arial, sans-serif;
+    --heading-font: serif;
+    --section-padding: 1rem;
+    --link-color-example: black;
+    font-size: $mainFontSize;
+}
+
+@include tablet {
+    :root {
+        --section-padding: 2rem;
+    }
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+*:focus,
+*:active {
+    outline: none;
+}
+
+
+html {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: MontserratRegular, Helvetica, Arial, sans-serif;
+    font-size: 4.27vw;
+    background-color: $white;
+    color: $black;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+
+    @include tablet {
+        font-size: $mainFontSize;
+    }
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: RufinaBold, serif;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.25;
+    margin: 0.25em 0;
+    color: $secondary;
+}
+
+h1 {
+    font-size: 2em;
+
+    @include tablet {
+        font-size: 2.5em;
+    }
+}
+
+h2 {
+    font-size: 1.75em;
+
+    @include tablet {
+        font-size: 2em;
+    }
+}
+
+h3 {
+    font-size: 1.5em;
+
+    @include tablet {
+        font-size: 1.75em;
+    }
+}
+
+h4 {
+    font-size: 1.25em;
+
+    @include tablet {
+        font-size: 1.5em;
+    }
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: $secondary;
+    transition: 0.25s;
+    cursor: pointer;
+
+    &:hover {
+        text-decoration: none;
+
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+/************************************************************************/
+/***************************** GLOBAL CLASSES ***************************/
+/************************************************************************/
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.align--center {
+    text-align: center;
+}
+
+.align--left {
+    text-align: left;
+}
+
+.align--right {
+    text-align: right;
+}
+
+.heading {
+    font-size: 1.85em;
+
+    @include tablet {
+        font-size: 2em;
+    }
+}
+
+.subheading {
+    font-size: 1.25em;
+    font-family: MontserratRegular;
+    color: $green;
+    text-transform: uppercase;
+}
+
+.section {
+    width: 100%;
+    max-width: 1180px;
+    padding: 4em 1em;
+    margin: 0 auto;
+    position: relative;
+
+    @include tablet {
+        padding: 4em 2em;
+    }
+}
+
+.section-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+    z-index: 1;
+    position: relative;
+}
+
+.image-wrapper {
+    width: var(--image-width, auto);
+    height: var(--image-height, auto);
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 0.5em 2.5em;
+    margin: 0.5em 0;
+    transition: 0.25s;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: MontserratBold;
+    @include borderRadius();
+    @include dropShadow();
+    font-size: 0.8em;
+    @include tablet {
+        font-size: 1em;
+    }
+}
+
+.btn-primary {
+    background-color: $secondary;
+    border: 0.2em solid $secondary;
+    color: $white;
+
+    &:hover {
+        background-color: $green;
+        border: 0.2em solid $green;
+        color: $white;
+    }
+}
+
+.btn-secondary {
+    background-color: $green;
+    border: 0.2em solid $green;
+    color: $white;
+
+    &:hover {
+        background-color: $secondary;
+        border: 0.2em solid $secondary;
+        color: $white;
+    }
+}
+
+.btn-white {
+    background-color: $white;
+    border: 0.2em solid $white;
+    color: $secondary;
+
+    &:hover {
+        background-color: $green;
+        border: 0.2em solid $green;
+        color: $white;
+    }
+}
+
+
+.btn-blue {
+    background-color: $skyblue;
+    border: 0.2em solid $skyblue;
+    color: $black;
+
+    &:hover {
+        background-color: $green;
+        border: 0.2em solid $green;
+        color: $white;
+    }
+}
+
+.btn-back {
+    cursor: pointer;
+    display: block;
+    margin: 1em 0;
+    border: 0;
+    background: 0;
+    font-family: inherit;
+    text-decoration: underline;
+    padding: 0;
+    color: $secondary;
+}
+
+.white-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(180deg, $white, 90%, rgba(255, 255, 255, 0));
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.blue-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $secondary;
+    opacity: 0.75;
+    z-index: 0;
+}
+
+/******************* HELPERS *********************/
+
+.desktop-only {
+    display: none;
+
+    @include tablet {
+        display: block;
+    }
+}
+
+.mobile-only {
+    display: block;
+
+    @include tablet {
+        display: none;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block;
+}
+
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
+
+.no-padded-sides {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.no-padded-top {
+    padding-top: 0;
+}
+
+.no-padded-bottom {
+    padding-bottom: 0;
+}
+
+.underline-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    left: 13em;
+    top: -5em;
+    position: relative;
+
+    @include tablet {
+        left: unset;
+        margin: 0 auto;
+        width: 11em;
+    }
+
+    .underline {
+        object-fit: cover;
+        object-position: 0 100%;
+        width: 7.25em;
+        height: 1em;
+        animation: show 2s;
+    }
+    
+    @keyframes show {
+        0% {
+            width: 0;
+        }
+
+        100% {
+            width: 7.25em;
+        }
+    }
+    @include tablet {
+        .underline {
+            width: 11em;
+            height: 1.5em;
+            animation: showdesktop 2s;
+        }
+        
+        @keyframes showdesktop {
+            0% {
+                width: 0;
+            }
+    
+            100% {
+                width: 11em;
+            }
+        }
+    }
+}
+
+/******************* NATIVE PAGES *********************/
+.section.error {
+    @include tablet {
+        min-height: calc(100vh - 315px);
+    }
+}
+
+//BLOG SIDEBAR CATEGORY LIST STYLE EDITS
+.wp-block-categories-list.wp-block-categories,
+.wp-block-archives-list.wp-block-archives {
+    list-style: none;
+    padding-left: 0;
+
+}
+
+.wp-block-latest-posts.wp-block-latest-posts__list li,
+.wp-block-categories-list.wp-block-categories li {
+    margin: 1.5em 0;
+}
+
+//BLOG SIDEBAR CATEGORY LIST STYLE EDITS
+.wp-block-latest-posts {
+    a {
+        &:hover {
+            color: $secondary;
+        }
+    }
+}
+
+#wp-block-archives-2,
+#wp-block-categories-1 {
+    padding: 1em 0.5em;
+    width: 70%;
+}
+
+.wp-block-search__inside-wrapper {
+    padding-top: 1em;;
+}
+.wp-block-search__label, .wp-block-archives label {
+    display: none;
+}
+
+.wp-block-search__button {
+    background: $secondary;
+    color: $white;
+    text-transform: uppercase;
+    font-family: MontserratBold;
+    @include borderRadius();
+    @include transitionAll();
+
+    &:hover {
+        background-color: $green;
+    }
+}
+
+.wp-block-search__input {
+    @include borderRadius();
+}
+
+/******************* SLICK SLIDER *********************/
+.slick-slider {
+    .slick-track {
+        display: flex;
+
+        .slick-slide {
+            display: flex;
+            height: auto;
+            align-items: stretch;
+            justify-content: center;
+            padding: 0 1em;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .slick-dots {
+        bottom: -3em;
+
+        li {
+            button:before {
+                color: $primary;
+                opacity: 1;
+                font-size: 15px;
+            }
+
+            &.slick-active {
+                button:before {
+                    color: $green;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,558 @@
+/* global styles */
+
+/******************* GLOBAL DEFAULTS & RESETS *********************/
+
+:root {
+    --body-font: OpenSans, Helvetica, Arial, sans-serif;
+    --heading-font: serif;
+    --section-padding: 1rem;
+    --link-color-example: black;
+    font-size: $mainFontSize;
+}
+
+@media (min-width: 768px) {
+    :root {
+        --section-padding: 2.5rem;
+    }
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+*:focus,
+*:active {
+    outline: -webkit-focus-ring-color auto 0px;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 100vw;
+}
+
+body {
+    width: inherit;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4.27vw;
+    background-color: $white;
+    color: $baseColor;
+    position: relative;
+    letter-spacing: 0.16px;
+    @include tablet {
+    	font-size: $mainFontSize;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Merriweather', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+    line-height: 1.2;
+    font-size: 1.25em;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+h1 {
+	font-size: 3em;
+}
+h2 {
+	font-size: 2.5em;
+}
+h3 {
+	font-size: 2em;
+}
+h4 {
+	font-size: 1.5em;
+}
+p {
+    font-size: 0.9em;
+    color: $baseColor;
+    line-height: 1.625;
+    margin: 0;
+    font-weight: 500;
+
+    @include tablet {
+        font-size: 0.95em;
+    }
+
+    @include desktop {
+        font-size: 1em;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $baseColor;
+    transition: 0.25s;
+
+    &:hover {
+        text-decoration: none;
+        color: $secondary;
+    }
+
+    a:active {
+        color: blue;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+	max-width: 100%;
+}
+
+/*******************GLOBAL CLASSES*********************/
+
+.preheading {
+	display: block;
+	color: $secondary;
+	text-transform: uppercase;
+}
+.heading {
+    font-size: 1.3em;
+    font-family: 'Open Sans', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 2.7px;
+}
+.subheading {
+	display: block;
+    line-height: 1.25;
+    @include tablet {
+    	line-height: 1.5;
+    }
+}
+
+.section {
+    width: 100%;
+    max-width: 1180px;
+    padding: 2em 1em;
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 0.75em;
+    font-weight: 600;
+    font-size: 1em;
+    transition: 0.25s;
+}
+
+.btn-primary, a.btn-primary {	
+    background-color: $darkbrown;
+    color: $white;
+    border: 0;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5em 1em;
+    &:hover {
+        background-color: $white;
+        color: $darkbrown;
+    }
+}
+
+.btn-secondary, a.btn-secondary {
+    background-color: $secondary;
+    color: $white;
+    border: 1px solid $secondary;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+    &:hover {
+        background-color: $white;
+        color: $secondary;
+    }
+    &.reverse {
+        background-color: $white;
+        color: $secondary;
+        border: 1px solid $white;
+        &:hover {
+            background-color: $secondary;
+            color: $white;
+        }
+    }
+}
+
+.link {
+    padding-top: 2em;
+    display: block;
+    color: $darkbrown;
+    font-weight: 700;
+    font-size: 1.25em;
+    &.inverse {
+        color: $white;
+    }
+    &::after {
+        content: url("/wp-content/themes/missionhealthcare/assets/icon-arrow-button.svg;");
+        padding-left: 1em;
+        top: 0.1em;
+        position: relative; 
+        @include transitionAll;
+    }
+    &:hover {
+        &::after {
+            padding-left: 2em;
+            @include transitionAll;
+        }
+    }
+}
+
+/******************* HELPERS *********************/
+
+.desktop-only {
+    display: none !important;
+
+    @include desktop {
+        display: block !important;
+    }
+}
+
+.mobile-only {
+    display: block !important;
+    @include desktop {
+        display: none !important;
+    }
+}
+
+.full-width {
+    width: 100%;
+    max-width: 100%;
+}
+
+.max-width {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.auto-height {
+    height: auto;
+}
+
+.full-width-full-height img {
+    width: 100%;
+    height: 100%;
+}
+
+.main--default ul {
+    list-style: disc;
+}
+.main--default h1 {
+    margin-left: 0;
+}
+.aligned--left {
+    margin-left: 0;
+    padding-left: 1em;
+}
+.no-pad {
+    padding: 0;
+}
+
+.disable-scroll {
+	overflow: hidden;
+	height: 100vh;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.align--center {
+    text-align: center;
+}
+
+.show {
+    display: block!important;
+}
+
+.hide {
+    display: none!important;
+}
+
+.size-full img {
+    height: auto;
+}
+
+
+//SECTION MAIN WHICH WRAPS SIDEBAR(ASIDE) AND MAIN CONTENT
+.section--main {
+    @include desktop {
+        display: flex;
+    }
+}
+//MAIN CONTENT
+.main--default {
+    a {
+        color: #0088cc;
+    }
+    @include desktop {
+        flex-basis: 80%;
+        min-height: calc(100vh - 244px);
+    }
+}
+//SIDEBAR
+.aside {
+    flex-basis: 20%;
+    transition: none;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 2em;
+    .expand-button {
+        border: 0;
+        background-color: #a8c8ed;
+        font-size: 20px;
+        text-align: left;
+        font-weight: bold;
+        width: 100%;
+        padding: 1rem;
+        position: relative;
+        .fa {
+            position: absolute;
+            right: 1em;
+        }
+    }
+    .expand-panel {
+        display: none;
+        background-image: url("/wp-content/themes/missionhealthcare/assets/mission-watermark.svg");
+        background-position: bottom left;
+        background-repeat: no-repeat;
+        background-color: #EEF4FC;
+        padding: 1em;
+        @include desktop {
+            padding: 0;
+            display: block;
+            background-image: none;
+        }
+    }
+    @include desktop {
+        display: block;
+        background-image: url("/wp-content/themes/missionhealthcare/assets/mission-watermark.svg"); 
+        background-color: #EEF4FC;
+    }
+        .menu {
+            padding-top: 3em;
+            padding-left: 1em;
+            padding-right: 1em;
+            margin-top: 0;
+            .current-menu-item > a {
+                color: $secondary;
+            }
+        }
+        .menu-item {
+            a {
+                font-family: 'Merriweather', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+                font-size: 1em;
+                font-weight: 500;
+                padding: 0.5em 0;
+                display: block;
+                &::after {
+                    content: none; 
+                }
+            }
+            .sub-menu {
+                display: none;
+            }
+        }
+        .current-menu-item.menu-item-has-children, 
+        .current-menu-ancestor.menu-item-has-children {
+            .sub-menu {
+                display: block;
+                padding-left: 0;
+                a {
+                    font-family: 'Merriweather', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+                    font-size: 1em;
+                    font-weight: 500;
+                    padding: 0.5em 0;
+                    display: block;
+                    &::after {
+                        content: none; 
+                    }
+                }
+                .current-menu-item a {
+                    color: $secondary;
+                }
+            }
+        }
+        .current-menu-item.menu-item-has-children, 
+        .current-menu-parent {
+            > a {
+                font-family: 'Merriweather', 'Helvetic Neue', Helvetic, Arial, sans-serif;
+                font-size: 1.5em;
+                font-weight: 500;
+                padding-bottom: 1em;
+                letter-spacing: 1px;
+                display: none;
+                position: relative;
+                &::after {
+                    content: " ";
+                    width: 1.5em;
+                    height: 1em;
+                    display: block;
+                    position: absolute;
+                    border-top: 0.15em solid $secondary;
+                    top: 2.25em;
+                }
+                @include desktop { 
+                    display: block;
+                }
+            }
+        }
+       
+}
+
+//BREADCRUMBS
+#breadcrumbs {
+    background: inherit;
+    padding-left: 0;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    color: #666666;
+    font-size: 11px;
+    margin-bottom: 10px;
+    a {
+        color: #372E2C;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    .active {
+        color: #999999;
+    }
+    .separator {
+        padding: 0 5px;
+        color: #ccc;
+    }
+}
+
+//GRAVITY FORM ON REFERRAL PAGE 
+#gform_wrapper_1 {
+    max-width: 20em;
+}
+#gform_wrapper_1 .gform_footer input {
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #006dcc;
+    *background-color: #0044cc;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+    background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    background-repeat: repeat-x;
+    border-color: #0044cc #0044cc #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+    filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+
+
+//LINKEDIN BUTTON ON INDIVIDUAL TEAM LEADER PAGE
+.linkedin-button a::after{
+    content: "\f08c";
+    font-family: fontawesome;
+    padding-left: 0.5em;
+}
+
+
+
+//MAPSVG
+.map {
+    .mapsvg-wrap {
+        flex-direction: column;
+        @include desktop {
+            flex-direction: row;
+        }
+        .mapsvg-controller-view-wrap.nano {
+            position: relative;
+            .nano-content {
+                position: relative;
+            }
+        }
+        .mapsvg-directory.flex {
+            position: relative;
+        }
+    }
+    .mapsvg-sidebar {
+        @include desktop {
+            flex-basis: 31%!important;
+            z-index: 0;
+        }
+    }
+    .mapsvg-directory {
+        background-color: $white!important;
+    }
+    .mapsvg-sidebar-left {
+        display: inline-block!important;
+    }
+    .mapsvg {
+        @include desktop {
+            padding-bottom: 80%!important;
+        }
+    }
+    .mapsvg-directory-item {
+        @extend .btn-secondary;
+        margin: 0.5em;
+        background-color: #eef4fc;
+        color: #372e2b;
+        border: 1px solid #eef4fc;
+        font-weight: 500;
+        box-shadow: 2px 2px 7px 0px #ccc;
+        padding: 1em 0;
+        width: 9em;
+        &.selected, &.hover {
+            background-color: $secondary;
+            color: $white;
+        }
+        @include desktop {
+            width: 10em;
+        }
+        &:hover {
+            background-color: $secondary;
+            color: $white;
+        }
+    }
+}
+
+
+//MEGANAV FOR LOCATIONS
+#menu-item-57:hover {
+    .sub-menu {
+        @include desktop {
+            width: 100%;
+            left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            max-height: 34em; 
+        }
+    }
+}

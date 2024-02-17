@@ -1,0 +1,92 @@
+/* footer styles */
+
+.footer {
+    background-color: $darkbrown;
+    color: $white;
+
+    .section--footer {
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        @include desktop {
+            flex-direction: row;
+            padding: 2em 2em;
+        }
+
+        .logo-container {
+            @include desktop {
+                order: 2;
+                flex-basis: 20%;
+            }
+            .info-block {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .logo {
+                    max-width: 10em;
+                }
+            }
+        }
+
+        .menu-container {
+            @include desktop {
+                order: 3;
+                flex-basis: 50%;
+            }
+            .info-block {
+                .footer-nav {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    padding-left: 0;
+                    padding-top: 1em;
+                    @include desktop {
+                        flex-direction: row;
+                        justify-content: flex-end;
+                    }
+                    li {
+                        padding: 0.5rem 1rem;
+                        @include desktop {
+                            text-align: center;
+                        }
+                        a {
+                            color: #fff;
+                            font-size: 0.9em;
+                            font-weight: 700;
+                            text-transform: uppercase;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .info-container {
+            @include desktop {
+                order: 1;
+                flex-basis: 29%;
+            }
+            .info-block {
+                font-size: 0.8em;
+                text-align: center;
+                padding: 2em;
+                line-height: 1.5;
+                @include desktop {
+                    text-align: left;
+                }
+                a {
+                    color: #fff;
+                    &:hover {
+                        color: $secondary;
+                    }
+                }
+            }
+        }
+    }
+}

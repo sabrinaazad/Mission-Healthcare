@@ -1,0 +1,236 @@
+/************************************************************************/
+/***************************** BLOG STYLES ******************************/
+/************************************************************************/
+
+
+.archive-template {
+  max-width: 1180px;
+  margin: 0 auto;
+
+  .section--aside {
+      display: none;
+  }
+
+  #nav-posts {
+      display: flex;
+      justify-content: space-between;
+      margin: 2em 0;
+      border-top: 1px solid $secondary;
+      padding-top: 1em;
+      width: 100%;
+
+      .next {
+          text-align: right;
+      }
+  }
+
+  @include desktop {
+      display: flex;
+      justify-content: space-between;
+
+      .section--archive {
+          flex-basis: 73%;
+          padding: 0;
+      }
+
+      .section--aside {
+          display: block;
+          flex-basis: 25%;
+          padding: 0 1em;
+      }
+  }
+
+  .post-grid {
+
+      @include tablet {
+          display: flex;
+          justify-content: flex-start;
+          align-items: stretch;
+          text-align: center;
+          margin-bottom: 3em;
+          flex-wrap: wrap;
+      }
+
+      @include desktop {
+          flex-wrap: wrap;
+          margin: 0 auto;
+          max-width: 60em;
+      }
+
+      .post {
+          background-color: $white;
+          padding: 0;
+          margin: 1em 2em;
+          border: 1px solid $lightgray;
+
+          &:hover {
+              .image-wrapper {
+                  &::after {
+                      position: absolute;
+                      top: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 100%;
+                      background-color: $skyblue;
+                      opacity: 0.8;
+                      content: url('/wp-content/themes/missiontheme/assets/icon-right-arrow.svg');
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                  }
+              }
+          }
+
+          @include tablet {
+              flex-basis: calc(33% - 1em);
+              margin: 1em 0.5em;
+          }
+
+          .image-wrapper {
+              padding: 5em;
+              width: 100%;
+              background-position: center;
+              background-size: cover;
+              background-image: url("/wp-content/themes/missiontheme/assets/blog-placeholder.jpg");
+              position: relative;
+
+              @include desktop {
+                  padding: 6em;
+
+              }
+          }
+
+          .content {
+              padding: 1em;
+              display: flex;
+              align-items: baseline;
+
+              .date {
+                  display: flex;
+                  flex-direction: column;
+                  @include dropShadow();
+
+                  .day {
+                      background-color: $secondary;
+                      color: $white;
+                      padding: 0 0.25em;
+                  }
+
+                  .month { 
+                      padding: 0 0.25em;
+                  }
+              }
+
+              .text {
+                  text-align: left;
+                  padding-left: 1em;
+
+                  h4 {
+                      margin-top: 1em;
+                      font-size: 1em;
+                  }
+
+                  .author {
+                      color: $green;
+                      font-size: 0.75em;
+                    
+                  }
+
+                  p {
+                      font-size: 0.75em;
+                  }
+              }
+          }
+      }
+  }
+
+}
+
+.single-template {
+  max-width: 1180px;
+  margin: 0 auto;
+
+  .section--aside {
+      display: none;
+
+      @include desktop {
+          display: block;
+      }
+  }
+
+  .date,
+  .category {
+      margin: 1em 0;
+      display: flex;
+  }
+
+  .category {
+      color: $secondary;
+  }
+
+  .date span {
+      color: $secondary;
+  }
+
+  .post-categories {
+      padding-left: 0;
+      margin: 0;
+      list-style-type: none;
+      margin-left: 0.25em;
+      display: flex;
+
+      li {
+          margin-right: 0.25em;
+
+          &::after {
+              content: ",";
+          }
+
+          &:last-child {
+              &::after {
+                  content: none;
+
+              }
+          }
+      }
+  }
+
+  @include desktop {
+      display: flex;
+      justify-content: space-between;
+
+      .section--single {
+          flex-basis: 72%;
+      }
+
+      .section--aside {
+          flex-basis: 25%;
+      }
+  }
+
+  #nav-posts {
+      display: flex;
+      justify-content: space-between;
+      margin: 2em 0;
+      border-top: 1px solid $secondary;
+      padding-top: 1em;
+      width: 100%;
+
+      .next {
+          text-align: right;
+          flex-basis: 40%;
+      }
+
+      .prev {
+          flex-basis: 40%;
+      }
+  }
+
+  .image-wrapper {
+      @include tablet {
+          max-width: 30em;
+          margin: 1em auto;
+      }
+  }
+
+}

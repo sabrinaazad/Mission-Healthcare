@@ -1,0 +1,168 @@
+/************************************************************************/
+/**************************** FOOTER STYLES *****************************/
+/************************************************************************/
+
+.footer {
+    background-color: $footerBG;
+
+    @include desktop {
+        .section {
+            padding-top: 2em;
+            padding-bottom: 1em;
+        }
+    }
+
+    .utility-container {
+        display: flex;
+        flex-direction: column;
+
+        @include tablet {
+            flex-direction: row;
+        }
+
+        .logo-container {
+            width: 18em;
+            margin: 0 auto;
+            text-align: center;
+            order: 1;
+
+            @include tablet {
+                order: unset;
+                margin: unset;
+                flex-basis: 33%;
+                align-self: center;
+
+                img {
+                    max-width: 15em;
+                }
+            }
+
+            @include desktop {
+                flex-basis: 20%;
+            }
+        }
+
+        .menu-container {
+            &:first-child {
+                order: 2;
+                position: relative;
+
+            }
+
+            &:nth-child(3) {
+                order: 3;
+            }
+
+            .footer-nav {
+                padding-left: 0;
+                list-style-type: none;
+                text-align: center;
+
+                li {
+                    padding: 1em 0.5em;
+
+                    a {
+                        color: $black;
+                        text-transform: uppercase;
+
+                        &:hover {
+                            color: $green;
+                        }
+                    }
+                    &.btn {
+                        padding: 0.5em 2.5em;
+                        a {
+                            color: $white;
+                            font-family: MontserratBold;
+                        }
+                        @include tablet {
+                            min-width: 15em;
+                            max-width: 15em;
+                            margin-right: 0;
+                            margin-left: auto;
+                        }
+                    }
+                }
+
+                @include tablet {
+                    flex-basis: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    &.footer-nav-1 {
+                        text-align: left;
+                    }
+                    &.footer-nav-2 {
+                        text-align: right;
+                    }
+                }
+            }
+
+            @include tablet {
+                flex-basis: 66%;
+                display: flex;
+                align-items: center;
+
+                &:first-child,
+                &:nth-child(3) {
+                    order: unset;
+                }
+
+                &:first-child {
+                    &::after {
+                        content: none;
+                    }
+                }
+            }
+
+            @include desktop {
+                flex-basis: 80%;
+            }
+        }
+    }
+
+    .info-container {
+        color: $black;
+        text-align: center;
+        font-size: 0.75em;
+
+        a {
+            text-transform: uppercase;
+            color: $black;
+
+            &:hover {
+                color: $green;
+            }
+        }
+
+        .icon-wrapper {
+            margin: 1em 2em 0;
+
+            img {
+                width: 3em;
+                margin: 0 1em;
+            }
+        }
+        .utility-bar {
+            display: flex;
+            flex-direction: column;
+            @include tablet {
+                flex-direction: row;
+                justify-content: center;
+            }
+            a {
+                margin: 0.5em 0;
+                display: block;
+                @include tablet {
+                    margin: 0.5em 2em;
+                }
+            }
+        }
+        @include desktop {
+            margin-top: 1em;
+
+            .info-block {
+                margin-top: 1em;
+            }
+        }
+    }
+}

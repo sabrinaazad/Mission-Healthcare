@@ -1,0 +1,368 @@
+/* header styles */
+.main-nav {
+  &.sticky-margin {
+    margin-bottom: 72px;
+  }
+
+  .sticky-wrapper {
+    background-color: $primary;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    @include dropShadow();
+    &.sticky {
+      position: fixed;
+    }
+  }
+
+  .main-nav__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @include desktop {
+      background-color: $primary;
+      margin: 0 auto;
+      position: relative;
+    }
+    .main-nav__logo {
+      z-index: 3;
+      padding: 0.5em;
+      @include desktop {
+        z-index: 2;
+        flex-basis: 20%;
+        a {
+          display: block;
+          position: absolute;
+          height: 7em;
+          width: 10em;
+          background: $white;
+          left: 0;
+          top: 0;
+          @include largedesktop {
+            width: 14em;
+          }
+        }
+      }
+      .logo {
+        max-width: 5.75em;
+        @include desktop {
+          max-width: 9em;
+          margin: 1.25em 0.5em 0;
+        }
+        @include largedesktop {
+          max-width: 12em;
+          margin: 0.5em 1em;
+        }
+      }
+    }
+  }
+
+  .main-nav__bar {
+    position: relative;
+    height: 4em;
+    width: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary;
+
+    @include desktop {
+      display: none;
+    }
+
+    .hamburger-button {
+      width: 2.5rem;
+      height: 2rem;
+      background-color: $transparent;
+      border: none;
+      position: relative;
+
+      .hamburger-button__bar--top,
+      .hamburger-button__bar--middle,
+      .hamburger-button__bar--bottom {
+        width: 30px;
+        height: 3px;
+        color: $darkbrown;
+        background: $darkbrown;
+        position: absolute;
+        @include transitionAll();
+      }
+
+      .hamburger-button__bar--top {
+        top: 5px;
+      }
+
+      .hamburger-button__bar--middle {
+        top: 15px;
+      }
+
+      .hamburger-button__bar--bottom {
+        top: 25px;
+      }
+
+      &.is-open {
+        .hamburger-button__bar--top,
+        .hamburger-button__bar--middle,
+        .hamburger-button__bar--bottom {
+          @include transitionAll();
+        }
+
+        .hamburger-button__bar--top {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+          top: 15px;
+          left: 8px;
+        }
+
+        .hamburger-button__bar--middle {
+          width: 0%;
+          opacity: 0;
+        }
+
+        .hamburger-button__bar--bottom {
+          -webkit-transform: rotate(-45deg);
+          -moz-transform: rotate(-45deg);
+          -o-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+          top: 15px;
+          left: 8px;
+        }
+      }
+    }
+  }
+
+  .main-nav__drawer {
+    position: absolute;
+    right: -40em;
+    width: 95%;
+    background: $white;
+    top: 17vw;
+    @include transitionAll();
+    z-index: 2;
+    @include tablet {
+      right: -60em;
+      top: 7.1vh;
+      width: 50%;
+    }
+    @include desktop {
+      transition: none;
+      position: unset;
+      right: 0;
+      display: flex;
+      background: $primary;
+      top: 0;
+      width: 100%;
+      height: 4.5em;
+      justify-content: space-between;
+    }
+
+    &.is-open {
+      right: 0em;
+      background-color: $primary;
+      overflow-y: scroll;
+      height: calc(100vh - 64px);
+    }
+    .primary-nav__container {
+      flex-basis: 75%;
+      display: flex;
+      @include desktop {
+        justify-content: center;
+        align-items: center;
+        z-index: 3;
+      }
+      @include largedesktop {
+        flex-basis: 65%;
+      }
+    }
+    .primary-nav {
+      margin-top: 1.75em;
+      padding-left: 1.75em;
+      .current_page_item > a {
+        color: $darkblue;
+      }
+      .menu-item {
+        font-size: 1.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        @include desktop {
+          font-size: 1em;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          &.menu-item-has-children {
+            &:hover {
+              .sub-menu {
+                display: block;
+                position: absolute;
+                background: $secondary;
+                padding: 1em 0.5em;
+                font-size: 1.25em;
+                top: 3.5em;
+                li {
+                  padding: 0.75em 1.25em;
+                  &:hover {
+                    background-image: linear-gradient(
+                      to bottom,
+                      $lightblue1,
+                      $lightblue2
+                    );
+                  }
+                  a {
+                    color: $white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      @include desktop {
+        padding: 0;
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 0.85em;
+        margin: 0 0.5em;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      .sub-menu {
+        margin-top: 0.75em;
+        padding-left: 0.75em;
+        @include desktop {
+          display: none;
+        }
+        .menu-item {
+          font-size: 0.75em;
+          text-transform: initial;
+          font-weight: 500;
+          padding: 0.75em 0;
+        }
+      }
+      li {
+        padding: 0.5em 0;
+        a {
+          color: $white;
+          &:hover {
+            color: $secondary;
+          }
+        }
+      }
+    }
+    .utility__drawer {
+      margin-top: 3em;
+      @include desktop {
+        margin-top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 1em;
+      }
+      .search-form {
+        position: relative;
+        @include desktop {
+          display: none;
+          position: absolute;
+          top: 4.5em;
+          left: 0;
+          background-color: $primary;
+          border-top: 1px solid $baseColorAlt;
+          z-index: 1;
+          width: 75%;
+        }
+        .search-field {
+          background-color: $darkbrown;
+          padding: 1em 0.5em;
+          width: calc(100% - 2em);
+          margin: 1em;
+          border: none;
+          font-size: inherit;
+          color: $white;
+          @include desktop {
+            background-color: $white;
+            color: $black;
+            padding: 0.5em;
+          }
+        }
+        .search-submit {
+          position: absolute;
+          right: 1.5em;
+          top: 1.75em;
+          background-color: $transparent;
+          border: none;
+          font-size: inherit;
+          opacity: 0;
+          @include desktop {
+            top: 1.25em;
+          }
+        }
+      }
+      .search-icon {
+        position: absolute;
+        right: 2em;
+        margin-top: -3.25em;
+        width: 1.5em;
+        height: 1.5em;
+      }
+      .social-icons {
+        margin: 0 1em 3em;
+        border-top: 1px solid $white;
+        padding-top: 1em;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        @include desktop {
+          border-top: none;
+          margin: 0;
+          padding: 0;
+        }
+        .social-icon {
+          margin-right: 1em;
+        }
+      }
+      .searchbar-button__desktop {
+        display: none;
+        @include desktop {
+          display: block;
+          border-left: 1px solid $white;
+          padding-left: 1em;
+          a {
+            color: $white;
+            display: flex;
+            &:hover {
+              text-decoration: underline;
+            }
+            .search-icon {
+              margin-left: 1em;
+              position: unset;
+              right: unset;
+              margin-top: unset;
+              width: unset;
+              height: unset;     
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main-nav__overlay {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    @include transitionAll();
+    &.active {
+      display: block;
+      background-color: rgba(0, 0, 0, 0.5);
+      pointer-events: all;
+      @include transitionAll();
+    }
+    @include desktop {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,492 @@
+/************************************************************************/
+/**************************** HEADER STYLES *****************************/
+/************************************************************************/
+
+.topbar {
+  background-color: $primary;
+
+  .content {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em;
+    font-size: 0.75em;
+
+    @include desktop {
+      font-size: 0.9em;
+      padding: 0.25em;
+    }
+
+    a {
+      color: $black;
+      &:hover {
+        color: $green;
+      }
+    }
+    
+    .promo {
+      display: none;
+
+      @include desktop {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    .icon-wrapper {
+      img {
+        width: 2em;
+        margin: 0 0.25em;
+      }
+    }
+
+    #gtranslate_selector {
+      border-radius: 5px;
+      padding: 0.15em;
+    }
+
+    .top-nav {
+      list-style: none;
+      display: flex;
+      padding-left: 0;
+
+      a {
+        margin: 0 0.5em;
+      }
+    }
+  }
+}
+
+.main-nav {
+  position: relative;
+  z-index: 10;
+
+  &.sticky-margin {
+    margin-top: 20vw;
+
+    @include tablet {
+      margin-top: 63px;
+    }
+
+    @include desktop {
+      margin-top: 81.5px;
+    }
+  }
+  &.extra-top-margin {
+    &.sticky-margin {
+
+      @include tablet {
+        margin-top: 95px;
+      }
+  
+      @include desktop {
+        margin-top: 113.5px;
+      }
+    }
+  }
+  .sticky-wrapper {
+    background-color: $navBG;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    @include dropShadow();
+
+    &.sticky {
+      position: fixed;
+
+      .main-nav__drawer.is-open {
+        top: 18vw;
+
+        @include tablet {
+          top: 0;
+        }
+      }
+    }
+  }
+
+  .main-nav__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0.5em;
+
+    @include tablet {
+      padding: 0;
+    }
+
+    .main-nav__logo {
+      z-index: 3;
+      width: 10em;
+      padding: 0 0.5em;
+
+      @include tablet {
+        flex-basis: 18%;
+        max-width: 8em;
+      }
+      @include desktop {
+        max-width: 10em;
+      }
+
+      @include regulardesktop {
+        flex-basis: 15%;
+      }
+    }
+
+    .main-nav__bar {
+      position: relative;
+      z-index: 3;
+
+      .hamburger-button {
+        width: 3.5rem;
+        height: 3rem;
+        background-color: $transparent;
+        border: none;
+
+        .hamburger-button__bar--top,
+        .hamburger-button__bar--middle,
+        .hamburger-button__bar--bottom {
+          width: 44px;
+          height: 8px;
+          border-radius: 10px;
+          color: $tetriary;
+          background: $tetriary;
+          position: absolute;
+          @include transitionAll();
+        }
+
+        .hamburger-button__bar--top {
+          top: 5px;
+        }
+
+        .hamburger-button__bar--middle {
+          top: 20px;
+        }
+
+        .hamburger-button__bar--bottom {
+          top: 35px;
+        }
+
+        &.is-open {
+
+          .hamburger-button__bar--top,
+          .hamburger-button__bar--middle,
+          .hamburger-button__bar--bottom {
+            @include transitionAll();
+          }
+
+          .hamburger-button__bar--top {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            top: 15px;
+            left: 8px;
+          }
+
+          .hamburger-button__bar--middle {
+            width: 0%;
+            opacity: 0;
+          }
+
+          .hamburger-button__bar--bottom {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+            top: 15px;
+            left: 8px;
+          }
+        }
+      }
+    }
+
+    .main-nav__drawer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      top: 18vw;
+      right: -25em;
+      z-index: 2;
+      background-color: $navBG;
+      @include dropShadow();
+      @include transition(right 1s);
+
+      @include tablet {
+        transition: none;
+        position: unset;
+        width: unset;
+        flex-basis: 82%;
+        height: auto;
+        top: 0;
+        right: 0;
+        box-shadow: none;
+      }
+
+      @include regulardesktop {
+        flex-basis: 80%;
+      }
+
+      &.is-open {
+        right: 0em;
+      }
+
+      .primary-nav {
+        padding-left: 0;
+        list-style-type: none;
+        overflow: scroll;
+        height: 75vh;
+        margin-top: 2em;
+        background-color: $navBG;
+
+        @include tablet {
+          padding: 0;
+          margin: 0;
+          height: auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          text-align: center;
+          overflow: initial;
+          font-size: 0.75em;
+          position: relative;
+        }
+
+        @include desktop {
+          font-size: 1em;
+        }
+
+        >li {
+          padding: 1em;
+
+          &.btn {
+            margin: 1em;
+            min-width: auto;
+            padding: 0.5em;
+            text-align: center;
+            display: block;
+
+            @include tablet {
+              width: 10em;
+              padding: 0.5em 0.25em;
+              min-height: auto;
+
+              a {
+                font-size: 1em;
+              }
+            }
+
+            a {
+              color: $white;
+              font-family: MontserratBold;
+
+              &:hover {
+                color: $white;
+              }
+            }
+
+            &.current-menu-item>a,
+            &.current-menu-ancestor>a {
+              color: $white;
+              border-bottom: none;
+            }
+          }
+
+          a {
+            color: $black;
+            font-size: 0.9em;
+            text-transform: uppercase;
+
+            &:hover {
+              color: $green;
+            }
+          }
+
+          @include tablet {
+            padding: 2em 0.5em;
+            display: flex;
+            align-items: center;
+            &.bold {
+              font-family: 'MontserratBold';
+            }
+
+            &.current-menu-item>a,
+            &.current-menu-ancestor>a {
+              color: $black;
+              border-bottom: 2px solid $black;
+            }
+          }
+
+
+
+          &.menu-item-has-children {
+            >a {
+              &:hover {
+                color: $green;
+              }
+            }
+
+            @include tablet {
+              position: relative;
+
+              &.right-on-tablet {
+                .sub-menu {
+                  right: 0;
+                }
+              }
+
+              .sub-menu {
+                display: none;
+                position: absolute;
+                background-color: $secondary;
+                width: 16em;
+                padding-bottom: 1em;
+                top: 5.1em;
+                list-style-type: none;
+                text-align: center;
+
+                a {
+                  color: $white;
+
+                  &:hover {
+                    color: $green;
+                  }
+                }
+
+                .current-menu-item>a {
+                  color: $green;
+                }
+              }
+
+              &:hover {
+                .sub-menu {
+                  display: block;
+                  margin-left: -5.75em;
+                }
+              }
+            }
+
+            @include desktop {
+              &.right-on-tablet {
+                .sub-menu {
+                  right: unset;
+                }
+              }
+            }
+
+            .sub-menu {
+              list-style-type: none;
+              padding-top: 1em;
+
+              li {
+                padding: 1em;
+                position: relative;
+                text-align: left;
+
+                a {
+                  &::before {
+                    font-family: fontawesome;
+                    content: "\f101";
+                    position: absolute;
+                    left: -0.5em;
+                    transition: left 250ms ease-in-out;
+                  }
+
+                  &:hover {
+                    &::before {
+                      font-family: fontawesome;
+                      content: "\f101";
+                      position: absolute;
+                      left: -0em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          &.main {
+            @include tablet {
+              position: unset;
+
+              &:hover {
+                .sub-menu {
+                  display: none;
+                }
+              }
+
+              &.current-menu-item,
+              &.current-menu-ancestor {
+                .sub-menu {
+                  max-width: 1180px;
+                  margin: 0 auto;
+                  display: block;
+                  background-color: $primary;
+                  padding-left: 0;
+                  display: flex;
+                  width: 100%;
+                  padding: 0;
+                  left: -9rem;
+                  &::before {
+                    content: " ";
+                    width: 100%;
+                    height: 100%;
+                    background-color: $primary;
+                    position: absolute;
+                    display: block;
+                    right: 100%;
+                  }
+                  &::after {
+                    content: " ";
+                    width: 100%;
+                    height: 100%;
+                    background-color: $primary;
+                    position: absolute;
+                    display: block;
+                    left: 100%;
+                  }
+                  a {
+                    color: $black;
+                    display: block;
+                    font-family: MontserratRegular;
+
+                    &::before {
+                      content: none;
+                    }
+
+                    &:hover {
+                      color: $green;
+
+                      &::before {
+                        content: none;
+                      }
+                    }
+                  }
+                  .current-menu-item {
+                    a {
+                      border-bottom: 2px solid $black;
+                    }
+                   
+                  }
+                }
+              }
+            }
+            @include regulardesktop {
+              &.current-menu-item,
+              &.current-menu-ancestor {
+                .sub-menu {
+                  left: -15rem;
+                  width: 100vw;
+                }
+              }
+            }
+           
+          }
+        }
+      }
+    }
+  }
+}
